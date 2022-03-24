@@ -172,37 +172,24 @@ document.addEventListener("DOMContentLoaded", function() {
     var btnVentas = document.querySelector('.ventas-btn');
 
     btnVentas.addEventListener('click', function () {
-        var cantClientes = 0;
-        var clientes = [];
-        var productos = [];
-        var precios = [];
-
-        cantClientes= prompt("Ingrese la cantidad de clientes: ");
-        for (let i = 1; i <= cantClientes; i++) {
-            productos = prompt("Ingrese la cantidad de productos: ");
-            //clientes.push.apply(i);
-            console.log(cantClientes[i]);
-            console.log(productos);
+        clientes = prompt("Digite el número de clientes: ")
+        Total = 0;
+        for (a = 1; a <= clientes; a++){
+            CantProduc = prompt("Cuantos productos va a comprar el cliente: " + a + ": ");
+            document.write("<p>" + "Cliente " + a + " : " + "</p>");
+            document.write("<p>" + "Número de productos cliente " + a + " : " + CantProduc + "</p>");
+            Subt = 0;
+            for(b = 1; b <= CantProduc; b++){
+                let PrecioUNit = prompt("Ingrese el valor del producto : " + b);
+                document.write("<p>" + "Valor producto " + b + ": $" + PrecioUNit + "</p>");
+                Subt = Subt + parseInt(PrecioUNit);
+            }
+            Total = Total + Subt;
+            document.write("<p>" + "Total compra: $" + Subt + "</p>");  
+            document.write("<br>"); 
         }
-        // for (let i = 0; i < clientes.length; i++) {
-        //     nombres.push(prompt("Ingrese el nombre del alumno " + (i+1) + ": "));
-        //     materias.push(prompt("Ingrese la materia del estudiante " + (i+1) + ": "))
-            
-        //     for (let n = 0; n < cantNotas; n++) {
-        //         notas.push(Number(prompt("Ingrese la nota " + (n+1) + " del estudiante " + (i+1) + ": ")));
-
-        //         sumatoria = Number(sumatoria) + notas[n];
-        //     }
-
-        //     promedio = (Number(sumatoria) / cantNotas).toFixed(1);
-
-        //     document.write("<p>" + "Estudiante " + (i+1) + ": " + nombres[i] + "<br>" + 
-        //         "Materia: " + materias[i] + "<br>" + 
-        //         "Nota 1: " + notas[0] + "<br>" + 
-        //         "Nota 2: " + notas[1] + "<br>" +
-        //         "Nota 3: " + notas[2] + "<br>" + 
-        //         "Promedio: " + promedio + "</p>");
-        // }
+        document.write("<p>" + "Total ventas del día: " + clientes + "</p>"); 
+        document.write("<p>" + "Total general del día: $" + Total + "</p>");
     })
 
     //Ejercicio 11
@@ -309,22 +296,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     btnRandom.addEventListener('click', function () {
         var numRandom = Math.floor(Math.random() * 20)+ 1;
-        var intentosRealizados = 0;
+        var intentosRealizados = 1;
         console.log(numRandom);
-        while (intentosRealizados < 3){
+
+        while (intentosRealizados <= 3){
             var numeroUser = prompt("Ingresa el numero en el que estoy pensando del (1-20):");
 
-            if (numeroUser < numRandom) {
-                numeroUser = prompt("El numero es muy bajo intenta de nuevo: ");
-                intentosRealizados = intentosRealizados + 1;
-            } 
-            if (numeroUser > numRandom) {
-                numeroUser = prompt("El numero es muy alto intenta de nuevo: ");
-                intentosRealizados = intentosRealizados + 1;
-            } 
             if (numeroUser == numRandom) {
                 alert("FELICIDADES acertaste el numero era: " + numeroUser);
-                intentosRealizados = 3;
+                intentosRealizados = 4;
+            } else {
+                alert("Lo siento fallaste te quedan " + (3 - intentosRealizados));
+                intentosRealizados = intentosRealizados + 1;
+
+                if (intentosRealizados > 3) {
+                    alert("Perdiste agotaste todos los intentos");
+                }
             }
         }
     })
